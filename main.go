@@ -1,12 +1,10 @@
 package main
 
 import (
-	"encoding/csv"
 	"fmt"
 	"os"
 
 	"example.org/to-do-app/commandutils"
-	"example.org/to-do-app/fileutils"
 	"example.org/to-do-app/ioutils"
 )
 
@@ -19,22 +17,7 @@ func main() {
 
 	processAction(os.Args)
 
-	writer := csv.NewWriter(os.Stdout)
-	writer.Write([]string{
-		"1", "My task", "today",
-	})
-
-	file, err := os.Open("example.csv")
-
-	if err != nil {
-		panic(err)
-	}
-
-	file = fileutils.GetPage()
-	fileContent, err := fileutils.ReadFile(file)
-
 	fmt.Scanf("h")
-	fmt.Printf(fileContent[0])
 }
 
 func processAction(args []string) {
