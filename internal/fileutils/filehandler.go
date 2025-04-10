@@ -2,7 +2,7 @@ package fileutils
 
 import "os"
 
-func GetPage() *os.File {
+func GetFile() *os.File {
 	file, err := os.OpenFile("todo.csv", os.O_APPEND, 0666)
 
 	return createFile(err, file)

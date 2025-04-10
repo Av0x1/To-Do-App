@@ -2,14 +2,13 @@ package commandutils
 
 import (
 	"encoding/csv"
+	"example.org/to-do-app/internal/fileutils"
 	"fmt"
 	"strconv"
-
-	"example.org/to-do-app/fileutils"
 )
 
 func AddTask(taskName string) {
-	file := fileutils.GetPage()
+	file := fileutils.GetFile()
 	writer := csv.NewWriter(file)
 	reader := csv.NewReader(file)
 
@@ -38,7 +37,7 @@ func readLastLine(reader *csv.Reader) []string {
 	for {
 		record, err := reader.Read()
 		if err != nil {
-			break // EOF oder Fehler
+			break
 		}
 		lastTodo = record
 	}
@@ -55,7 +54,7 @@ func getNextId(lastTodo []string) string {
 		tmpId, err := strconv.Atoi(lastTodo[0])
 
 		if err != nil {
-			fmt.Println("Fehler biem Konvertieren der ID:", err)
+			fmt.Println("Fehler beim Konvertieren der ID:", err)
 		}
 
 		id = strconv.Itoa(tmpId + 1)
